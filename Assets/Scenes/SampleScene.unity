@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 220688915}
   - component: {fileID: 220688916}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ultrafondo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 241760113}
   - component: {fileID: 241760112}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exomolecula
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 265487886}
   - component: {fileID: 265487887}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ultrafondo (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 270331135}
   - component: {fileID: 270331136}
   - component: {fileID: 270331137}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fondo (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,6 +538,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8, y: 1.1116552}
   m_EdgeRadius: 0
+--- !u!1 &847741266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 847741267}
+  m_Layer: 3
+  m_Name: Groundcheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &847741267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847741266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.079, y: -0.585, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1187216346}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1184376880
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +580,7 @@ GameObject:
   - component: {fileID: 1184376881}
   - component: {fileID: 1184376882}
   - component: {fileID: 1184376883}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fondo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +712,8 @@ GameObject:
   - component: {fileID: 1187216348}
   - component: {fileID: 1187216347}
   - component: {fileID: 1187216349}
-  m_Layer: 0
+  - component: {fileID: 1187216350}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -751,7 +783,9 @@ Transform:
   m_LocalPosition: {x: -2.41, y: -1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 847741267}
+  - {fileID: 1526888920}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -768,10 +802,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  jumpHeight: 10
+  jumpHeight: 3
   velX: 0
   velY: 0
   rb: {fileID: 0}
+  groundcheck: {fileID: 847741267}
+  isGrounded: 0
+  groundCheckRadius: 0.2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!50 &1187216348
 Rigidbody2D:
   serializedVersion: 4
@@ -834,6 +874,57 @@ CapsuleCollider2D:
   m_Offset: {x: 0.14682078, y: 0.028416872}
   m_Size: {x: 0.84445715, y: 1.2138767}
   m_Direction: 0
+--- !u!95 &1187216350
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187216344}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 07a991a231eacff4ab33655058f1a08e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!1 &1526888919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1526888920}
+  m_Layer: 3
+  m_Name: Hands
+  m_TagString: Hands
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1526888920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526888919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1187216346}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1567311984
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +1062,7 @@ GameObject:
   - component: {fileID: 1911760373}
   - component: {fileID: 1911760374}
   - component: {fileID: 1911760375}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fondo (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

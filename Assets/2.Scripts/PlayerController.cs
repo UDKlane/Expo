@@ -7,6 +7,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float speed, jumpHeight;
     [SerializeField] float velX, velY;
     [SerializeField] Rigidbody2D rb;
+    public Transform groundcheck;
+    public bool isGrounded;
+    public float groundCheckRadius;
+    public LayerMask whatIsGround;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +21,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {      
+        isGrounded = Physics2D.OverlapCircle(groundcheck.position, groundCheckRadius, whatIsGround);
+
         FlipCharacter();
     }
 
@@ -29,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if(Input.GetButton("Jump"))
+        if(Input.GetButton("Jump") && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
         }
@@ -49,7 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        else
+        else if(rb.velocity.x < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
